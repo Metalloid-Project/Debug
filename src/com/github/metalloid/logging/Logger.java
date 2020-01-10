@@ -17,28 +17,28 @@ public class Logger {
     }
 
     public Logger(Class<?> clazz) {
-        this.className.getClass().getSimpleName();
+        this.className = clazz.getSimpleName();
     }
 
-    public void info(Object message) {
-        log(Type.INFO, message);
+    public void info(Object message, Object... formatArguments) {
+        log(Type.INFO, message, formatArguments);
     }
 
-    public void warning(Object message) {
-        log(Type.WARNING, message);
+    public void warning(Object message, Object... formatArguments) {
+        log(Type.WARNING, message, formatArguments);
     }
 
-    public void error(Object message) {
-        log(Type.ERROR, message);
+    public void error(Object message, Object... formatArguments) {
+        log(Type.ERROR, message, formatArguments);
     }
 
-    public void debug(Object message) {
-        log(Type.DEBUG, message);
+    public void debug(Object message, Object... formatArguments) {
+        log(Type.DEBUG, message, formatArguments);
     }
 
-    private void log(Type type, Object message) {
+    private void log(Type type, Object message, Object... arguments) {
         if (debug) {
-            System.out.println(String.format("%s: [%s][%s]", type, className, message.toString()));
+            System.out.println(String.format("%s: [%s][%s]", type, className, message.toString(), arguments));
         }
     }
 }
