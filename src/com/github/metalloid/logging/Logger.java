@@ -38,7 +38,8 @@ public class Logger {
 
     private void log(Type type, Object message, Object... arguments) {
         if (debug) {
-            System.out.println(String.format("%s: [%s][%s]", type, className, message.toString(), arguments));
+            String formattedMessage = String.format(message.toString(), arguments);
+            System.out.println(String.format("%s: [%s][%s]", type, className, formattedMessage));
         }
     }
 }
