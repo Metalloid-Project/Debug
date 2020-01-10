@@ -2,6 +2,7 @@ package com.github.metalloid.logging;
 
 public class Logger {
     private Object clazz;
+    private Boolean debug;
 
     private enum Type {
         DEBUG,
@@ -12,6 +13,7 @@ public class Logger {
 
     public Logger(Object clazz) {
         this.clazz = clazz;
+        this.debug = Boolean.parseBoolean(System.getProperty("metalloid.debug"));
     }
 
     public void info(Object message) {
@@ -31,6 +33,8 @@ public class Logger {
     }
 
     private void log(Type type, Object message) {
-        System.out.println(String.format("%s: [%s][%s]", type, clazz.getClass().getSimpleName(), message.toString()));
+        if (debug) {
+            System.out.println(String.format("%s: [%s][%s]", type, clazz.getClass().getSimpleName(), message.toString()));
+        }
     }
 }
