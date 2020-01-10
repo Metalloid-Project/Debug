@@ -12,12 +12,12 @@ public class Logger {
     }
 
     public Logger(Object clazz) {
-        this.className = clazz.getClass().getSimpleName();
-        this.debug = Boolean.parseBoolean(System.getProperty("metalloid.debug"));
+        this(clazz.getClass());
     }
 
     public Logger(Class<?> clazz) {
         this.className = clazz.getSimpleName();
+        initialize();
     }
 
     public void info(Object message, Object... formatArguments) {
@@ -41,5 +41,9 @@ public class Logger {
             String formattedMessage = String.format(message.toString(), arguments);
             System.out.println(String.format("%s: [%s][%s]", type, className, formattedMessage));
         }
+    }
+
+    private void initialize() {
+        this.debug = Boolean.parseBoolean(System.getProperty("metalloid.debug"));
     }
 }
